@@ -12,18 +12,16 @@ public class BikePart{
     private double price;
     private double salesPrice;
     private boolean onSale;
-    private int quantity;
 
     /**
      * Constructor for objects of class BikePart
      */
-    public BikePart(String partName, int partNum, double price, double salesPrice, boolean onSale, int quantity){
+    public BikePart(String partName, int partNum, double price, double salesPrice, boolean onSale){
         this.partName = partName;
         this.partNum = partNum;
         this.price = price;
         this.salesPrice = salesPrice;
         this.onSale = onSale;
-        this.quantity = quantity;
     }
 
     /**
@@ -110,17 +108,10 @@ public class BikePart{
      * Method checks part quantity
      * @return int;
      */
-    public int getQuantity(){return this.quantity;}
-
-    /**
-     * Method changes part quantity
-     * @param quantity the number of parts that exist in inventory
-     */
-    public void setQuantity(int quantity){this.quantity = quantity;}
 
     @Override
     public String toString(){
-        return String.format("%s%s%d%s%.2f%s%.2f%s%b%s%d",partName ,",",partNum ,",",price,",",salesPrice,",",onSale,",",quantity);
+        return String.format("%s%s%d%s%.2f%s%.2f%s%b",partName ,",",partNum ,",",price,",",salesPrice,",",onSale);
     }
 
 }
