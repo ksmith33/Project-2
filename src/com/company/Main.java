@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Inventory parts = new Inventory();
+        Warehouse parts = new Warehouse();
         File inFile = new File("warehouseDB.txt");
         Scanner sc = new Scanner(inFile);
         String user = "filler";
@@ -20,8 +20,8 @@ public class Main {
             double sp = Double.parseDouble(newObj[3]);
             boolean s = Boolean.parseBoolean(newObj[4]);
             int q = Integer.parseInt(newObj[5]);
-            BikePart bpName = new BikePart(n, id, p, sp, s, q);
-            parts.addPart(bpName);
+            Inventory newInv = new Inventory(n, id, p, sp, s, q);
+            parts.add(newInv);
         }
         sc.close();
 
@@ -66,10 +66,13 @@ public class Main {
                             double sp = Double.parseDouble(newObj[3]);
                             boolean s = Boolean.parseBoolean(newObj[4]);
                             int q = Integer.parseInt(newObj[5]);
-                            BikePart bpName = new BikePart(n, id, p, sp, s, q);
-                            String listContains = parts.checkPart(bpName);
-                            if (!listContains.equals("true")) {
-                                parts.addPart(bpName);
+                            Inventory newInv = new Inventory(n,id,p,sp,s,q);
+                            Inventory listContains = parts.findInventorybyName(newInv.findPartName());
+                            if (!listContains.findPartName().equals(newInv.findPartName())) {
+                                parts.add(newInv);
+                            }
+                            else{
+                                listContains.setQuantity(listContains.getQuantity() + newInv.getQuantity());
                             }
                         }
                         fileRead.close();
@@ -90,10 +93,13 @@ public class Main {
                     double salesPrice = input.nextDouble();
                     boolean onSale = input.nextBoolean();
                     int quantity = input.nextInt();
-                    BikePart bP = new BikePart(partName, partNumber, price, salesPrice, onSale, quantity);
-                    String add = parts.checkPart(bP);
-                    if (!add.equals("true")) {
-                        parts.addPart(bP);
+                    Inventory newInv = new Inventory(partName, partNumber, price, salesPrice, onSale, quantity);
+                    Inventory listContains = parts.findInventorybyName(newInv.findPartName());
+                    if (!listContains.findPartName().equals(newInv.findPartName())) {
+                        parts.add(newInv);
+                    }
+                    else{
+                        listContains.setQuantity(listContains.getQuantity() + newInv.getQuantity());
                     }
                 }catch (InputMismatchException e){
                     System.out.println();
@@ -105,20 +111,14 @@ public class Main {
                 try {
                     System.out.println("Enter the part number: ");
                     int number = input.nextInt();
-                    Boolean inStock = false;
-                    ArrayList<BikePart> array = parts.getInventory();
-                    for (BikePart part : array) {
-                        if (part.getPartNum().equals(number)) {
-                            parts.sellPart(part);
-                            parts.sellDisplayPart(part);
-                            System.out.println();
-                            inStock = true;
-                        }
-                    }
-                    if (!inStock) {
+                    Inventory newInv = parts.findInventorybyNumber(number);
+                    if (newInv == null) {
                         System.out.println();
                         System.out.println("This item is not currently in stock.");
                         System.out.println();
+                    }
+                    else{
+                        newInv.setQuantity(newInv.getQuantity() - 1);
                     }
                 } catch (InputMismatchException e){
                     System.out.println();
@@ -130,17 +130,19 @@ public class Main {
                 try {
                     System.out.println("Enter the part name: ");
                     String partName = input.next();
-                    Boolean inStock = false;
-                    ArrayList<BikePart> array = parts.getInventory();
-                    for (BikePart part : array) {
-                        if (part.getPartName().equals(partName)) {
-                            parts.displayPart(part);
-                            System.out.println();
-                            inStock = true;
-                        }
-                    }
-                    if (!inStock) {
+                    Inventory newInv = parts.findInventorybyName(partName);
+                    if (newInv == null) {
+                        System.out.println();
                         System.out.println("This item is not currently in stock.");
+                        System.out.println();
+                    }
+                    else{
+                        if(newInv.findPart().isOnSale() == true){
+                            System.out.println(newInv.findPartName() + newInv.findPart().getSalesPrice());
+                        }
+                        else{
+                            System.out.println(newInv.findPartName() + newInv.findPart().getPrice());
+                        }
                     }
                 }catch (InputMismatchException e){
                     System.out.println();
@@ -149,15 +151,9 @@ public class Main {
                     input.nextLine();
                 }
             } else if ((user.equals("SortName")) || (user.equals("sortname")) || (user.equals("SORTNAME"))) {
-                ArrayList<BikePart> sortList = parts.getInventory();
-                sortList.sort(Comparator.comparing(BikePart::getPartName, String.CASE_INSENSITIVE_ORDER));
-                parts.print();
-                System.out.println();
+                System.out.println(parts.sortByName() + "\n");
             } else if ((user.equals("SortNumber")) || (user.equals("sortnumber")) || (user.equals("SORTNUMBER"))) {
-                ArrayList<BikePart> sortList = parts.getInventory();
-                sortList.sort(Comparator.comparing(BikePart::getPartNum));
-                parts.print();
-                System.out.println();
+                System.out.println(parts.sortbyNumber());
             } else {
                 if (!(user.equals("quit") || user.equals("Quit") || user.equals("QUIT"))) {
                     System.out.println();
@@ -172,15 +168,15 @@ public class Main {
 
         FileWriter fileWriter = new FileWriter("warehouseDB.txt", false);
         PrintWriter writer = new PrintWriter(fileWriter);
-        ArrayList<BikePart> partsToSave = parts.getInventory();
+        ArrayList<Inventory> partsToSave = parts.getWarehouse();
 
         int counter = 0;
         while (counter < partsToSave.size() - 1) {
-            writer.println(partsToSave.get(counter).toString());
+            writer.println(partsToSave.get(counter).findPart());
             ++counter;
         }
         while (counter < partsToSave.size()) {
-            writer.print(partsToSave.get(counter).toString());
+            writer.print(partsToSave.get(counter).findPart());
             ++counter;
         }
         writer.close();
