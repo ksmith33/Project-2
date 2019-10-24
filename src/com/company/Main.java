@@ -180,7 +180,7 @@ public class Main {
                 File readFile = new File(fileName);
                 Scanner fileRead = new Scanner(readFile);
 
-                System.out.println("Enter WarehouseToSalesVan or SalesVan to SalesVan");
+                System.out.println("Enter WarehouseToSalesVan or SalesVanToSalesVan");
 
                 user = input.next();
                 if (user.equals("WarehouseToSalesVan")){
@@ -196,7 +196,19 @@ public class Main {
                         mainAss.move(parts.getWarehouse(), mainFleet.findSalesVane(salesVanName), name, quantity);
                     }
                 }
-
+                if (user.equals("SalesVanToSalesVan")){
+                    String newEntry = fileRead.nextLine();
+                    String[] newObj = newEntry.split(",");
+                    String salesVanName1 = newObj[0];
+                    String salesVanName2 = newObj[1];
+                    while (fileRead.hasNext()){
+                        newEntry = fileRead.nextLine();
+                        newObj = newEntry.split(",");
+                        String name = newObj[0];
+                        int quantity = Integer.parseInt(newObj[1]);
+                        mainAss.move(mainFleet.findSalesVane(salesVanName1), mainFleet.findSalesVane(salesVanName2), name, quantity);
+                    }
+                }
             }
             else {
                 if (!(user.equals("quit") || user.equals("Quit") || user.equals("QUIT"))) {

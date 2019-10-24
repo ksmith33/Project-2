@@ -28,4 +28,16 @@ public class Associate {
         }
     }
 
+    public void move(SalesVan salesV, SalesVan salV, String part, int quantity){
+        salesV.findInventorybyName(part).decrease(quantity);
+        Inventory toMove = salV.findInventorybyName(part);
+
+        if (toMove == null){
+            salV.add(salesV.findInventorybyName(part));
+        }
+        else{
+            salV.findInventorybyName(part).increase(quantity);
+        }
+    }
+
 }
