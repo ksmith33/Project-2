@@ -68,11 +68,14 @@ public class Main {
                             int q = Integer.parseInt(newObj[5]);
                             Inventory newInv = new Inventory(n,id,p,sp,s,q);
                             Inventory listContains = parts.findInventorybyName(newInv.getPartName());
-                            if (!listContains.getPartName().equals(newInv.getPartName())) {
+                            if (listContains == null) {
                                 parts.add(newInv);
                             }
                             else{
+                                listContains.setOnSale(newInv.isOnSale());
                                 listContains.setQuantity(listContains.getQuantity() + newInv.getQuantity());
+                                listContains.setPrice(newInv.getPrice());
+                                listContains.setSalesPrice(newInv.getSalesPrice());
                             }
                         }
                         fileRead.close();
@@ -95,11 +98,14 @@ public class Main {
                     int quantity = input.nextInt();
                     Inventory newInv = new Inventory(partName, partNumber, price, salesPrice, onSale, quantity);
                     Inventory listContains = parts.findInventorybyName(newInv.getPartName());
-                    if (!listContains.getPartName().equals(newInv.getPartName())){
+                    if (listContains == null){
                         parts.add(newInv);
                     }
                     else{
+                        listContains.setOnSale(newInv.isOnSale());
                         listContains.setQuantity(listContains.getQuantity() + newInv.getQuantity());
+                        listContains.setPrice(newInv.getPrice());
+                        listContains.setSalesPrice(newInv.getSalesPrice());
                     }
                 }catch (InputMismatchException e){
                     System.out.println();
@@ -137,11 +143,11 @@ public class Main {
                         System.out.println();
                     }
                     else{
-                        if(newInv.findPart().isOnSale() == true){
-                            System.out.println("Name: " + newInv.getPartName() + " " + "Price: " + newInv.findPart().getSalesPrice());
+                        if(newInv.isOnSale() == true){
+                            System.out.println("Name: " + newInv.getPartName() + " " + "Price: " + newInv.getSalesPrice());
                         }
                         else{
-                            System.out.println("Name: " + newInv.getPartName() + " " + "Price: " + newInv.findPart().getPrice());
+                            System.out.println("Name: " + newInv.getPartName() + " " + "Price: " + newInv.getPrice());
                         }
                     }
                 }catch (InputMismatchException e){
@@ -151,9 +157,21 @@ public class Main {
                     input.nextLine();
                 }
             } else if ((user.equals("SortName")) || (user.equals("sortname")) || (user.equals("SORTNAME"))) {
-                System.out.println(parts.sortByName() + "\n");
+                parts.sortByName();
+                ArrayList<Inventory> partsToSave = parts.getWarehouse();
+                int counter = 0;
+                while (counter < partsToSave.size()) {
+                    System.out.println(partsToSave.get(counter));
+                    ++counter;
+                }
             } else if ((user.equals("SortNumber")) || (user.equals("sortnumber")) || (user.equals("SORTNUMBER"))) {
-                System.out.println(parts.sortbyNumber());
+                parts.sortbyNumber();
+                ArrayList<Inventory> partsToSave = parts.getWarehouse();
+                int counter = 0;
+                while (counter < partsToSave.size()) {
+                    System.out.println(partsToSave.get(counter));
+                    ++counter;
+                }
             } else {
                 if (!(user.equals("quit") || user.equals("Quit") || user.equals("QUIT"))) {
                     System.out.println();
@@ -172,11 +190,11 @@ public class Main {
 
         int counter = 0;
         while (counter < partsToSave.size() - 1) {
-            writer.println(partsToSave.get(counter).findPart() + "," + partsToSave.get(counter).getQuantity());
+            writer.println(partsToSave.get(counter));
             ++counter;
         }
         while (counter < partsToSave.size()) {
-            writer.print(partsToSave.get(counter).findPart() + "," + partsToSave.get(counter).getQuantity());
+            writer.print(partsToSave.get(counter));
             ++counter;
         }
         writer.close();

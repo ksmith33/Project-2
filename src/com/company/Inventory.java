@@ -18,15 +18,16 @@ public class Inventory extends BikePart{
         this.quantity = quantity;
     }
 
-    public BikePart findPart(){
-        return this;
-    }
-
     public void setQuantity(int newQuantity){
         quantity = newQuantity;
     }
 
     public int getQuantity() {
         return this.quantity;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("%s%s%d%s%.2f%s%.2f%s%b%s%d",super.getPartName() ,",",super.getPartNum() ,",",super.getPrice(),",",super.getSalesPrice(),",",super.isOnSale(), "," , quantity);
     }
 }

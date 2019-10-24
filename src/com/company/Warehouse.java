@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Warehouse {
+public class Warehouse{
     ArrayList<Inventory> invList;
 
     public Warehouse(){
@@ -19,7 +19,7 @@ public class Warehouse {
         boolean found = false;
         Inventory inv = null;
 
-        while (counter < invList.size()-1 && found == false){
+        while (counter < invList.size() && found == false){
             if (invList.get(counter).getPartName().equals(name) ){
                 found = true;
                 inv = invList.get(counter);
@@ -51,14 +51,12 @@ public class Warehouse {
         return invList;
     }
 
-    public String sortByName(){
+    public void sortByName(){
         CompareInventorybyName inv2 = new CompareInventorybyName();
         Collections.sort(invList,inv2);
-        return invList.toString();
     }
-    public String sortbyNumber(){
+    public void sortbyNumber(){
         CompareInventorybyNumber inv2 = new CompareInventorybyNumber();
         Collections.sort(invList, inv2);
-        return invList.toString();
     }
 }
