@@ -19,7 +19,7 @@ public class Warehouse{
         boolean found = false;
         Inventory inv = null;
 
-        while (counter < invList.size() && found == false){
+        while (counter < invList.size()-1 && found == false){
             if (invList.get(counter).getPartName().equals(name) ){
                 found = true;
                 inv = invList.get(counter);
