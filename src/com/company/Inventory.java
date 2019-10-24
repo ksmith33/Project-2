@@ -22,6 +22,14 @@ public class Inventory extends BikePart{
         quantity = newQuantity;
     }
 
+    public void decrease(int n){
+        quantity = quantity - n;
+    }
+
+    public void increase(int n){
+        quantity = quantity + n;
+    }
+
     public int getQuantity() {
         return this.quantity;
     }
