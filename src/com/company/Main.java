@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Warehouse parts = new Warehouse();
+        Warehouse parts = new Warehouse("mainWarehouse");
         File inFile = new File("warehouseDB.txt");
         Scanner sc = new Scanner(inFile);
         String user = "filler";
