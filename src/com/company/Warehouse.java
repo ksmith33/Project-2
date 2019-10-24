@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Warehouse{
-    ArrayList<Inventory> invList;
+    private ArrayList<Inventory> invList;
 
     public Warehouse(){
         invList = new ArrayList<>();
