@@ -17,14 +17,15 @@ public class Associate {
         this.name = name;
     }
 
-    public void move(Warehouse wH, SalesVan sV){
-        wH.findInventorybyName().decrease();
-        sV.findInventorybyName().increase();
-    }
-
-    public void move(SalesVan salesV, SalesVan salV){
-        salesV.findInventorybyName().decrease();
-        salV.findInventorybyName().increase();
+    public void move(Warehouse wH, Warehouse sV, String part, int quantity){
+        wH.findInventorybyName(part).decrease(quantity);
+        Inventory toMove = sV.findInventorybyName(part);
+        if (toMove == null){
+            sV.add(wH.findInventorybyName(part));
+        }
+        else{
+            sV.findInventorybyName(part).increase(quantity);
+        }
     }
 
 }

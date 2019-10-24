@@ -7,6 +7,9 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         Warehouse parts = new Warehouse("mainWarehouse");
+        Associate mainAss = new Associate(parts.getName());
+        Fleet mainFleet = new Fleet();
+
         File inFile = new File("warehouseDB.txt");
         Scanner sc = new Scanner(inFile);
         String user = "filler";
@@ -37,6 +40,7 @@ public class Main {
                 System.out.println("Display: Display a part");
                 System.out.println("SortName: Sort parts by part name");
                 System.out.println("SortNumber: Sort parts by part number");
+                System.out.println("Move: Move inventory");
                 System.out.println("Quit:");
                 System.out.println("Enter your choice: ");
                 user = input.next();
@@ -158,21 +162,43 @@ public class Main {
                 }
             } else if ((user.equals("SortName")) || (user.equals("sortname")) || (user.equals("SORTNAME"))) {
                 parts.sortByName();
-                ArrayList<Inventory> partsToSave = parts.getWarehouse();
                 int counter = 0;
-                while (counter < partsToSave.size()) {
-                    System.out.println(partsToSave.get(counter));
+                while (counter < parts.size()) {
+                    System.out.println(parts.get(counter));
                     ++counter;
                 }
             } else if ((user.equals("SortNumber")) || (user.equals("sortnumber")) || (user.equals("SORTNUMBER"))) {
                 parts.sortbyNumber();
-                ArrayList<Inventory> partsToSave = parts.getWarehouse();
                 int counter = 0;
-                while (counter < partsToSave.size()) {
-                    System.out.println(partsToSave.get(counter));
+                while (counter < parts.size()) {
+                    System.out.println(parts.get(counter));
                     ++counter;
                 }
-            } else {
+            } else if((user.equals("Move"))|| (user.equals("MOVE")) || (user.equals("move"))){
+                System.out.println("Enter the name of the Sales Van Delivery File: ");
+                String fileName = input.next();
+                File readFile = new File(fileName);
+                Scanner fileRead = new Scanner(readFile);
+
+                System.out.println("Enter WarehouseToSalesVan or SalesVan to SalesVan");
+
+                user = input.next();
+                if (user.equals("WarehouseToSalesVan")){
+                    String newEntry = fileRead.nextLine();
+                    String[] newObj = newEntry.split(",");
+                    String mainWarehouse = newObj[0];
+                    String salesVanName = newObj[1];
+                    while (fileRead.hasNext()){
+                        newEntry = fileRead.nextLine();
+                        newObj = newEntry.split(",");
+                        String name = newObj[0];
+                        int quantity = Integer.parseInt(newObj[1]);
+                        mainAss.move(parts.getWarehouse(), mainFleet.findSalesVane(salesVanName), name, quantity);
+                    }
+                }
+
+            }
+            else {
                 if (!(user.equals("quit") || user.equals("Quit") || user.equals("QUIT"))) {
                     System.out.println();
                     System.out.println("Sorry. That's not a valid selection.");
@@ -186,15 +212,14 @@ public class Main {
 
         FileWriter fileWriter = new FileWriter("warehouseDB.txt", false);
         PrintWriter writer = new PrintWriter(fileWriter);
-        ArrayList<Inventory> partsToSave = parts.getWarehouse();
 
         int counter = 0;
-        while (counter < partsToSave.size() - 1) {
-            writer.println(partsToSave.get(counter));
+        while (counter < parts.size() - 1) {
+            writer.println(parts.get(counter));
             ++counter;
         }
-        while (counter < partsToSave.size()) {
-            writer.print(partsToSave.get(counter));
+        while (counter < parts.size()) {
+            writer.print(parts.get(counter));
             ++counter;
         }
         writer.close();

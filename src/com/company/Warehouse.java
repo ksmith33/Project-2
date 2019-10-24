@@ -33,7 +33,7 @@ public class Warehouse {
         boolean found = false;
         Inventory inv = null;
 
-        while (counter < invList.size()-1 && found == false){
+        while (counter < invList.size() && found == false){
             if (invList.get(counter).getPartName().equals(name) ){
                 found = true;
                 inv = invList.get(counter);
@@ -72,8 +72,8 @@ public class Warehouse {
      * This method returns just the ArrayList of the Warehouse object.
      * @return the ArrayList
      */
-    public ArrayList<Inventory> getWarehouse(){
-        return invList;
+    public Warehouse getWarehouse(){
+        return this;
     }
 
     /**
@@ -95,10 +95,9 @@ public class Warehouse {
 
     /**
      * This method returns the Warehouse name.
-     * @param wH - the Warehouse object
      * @return the name of the object in the form of a String.
      */
-    public String getName(Warehouse wH){
+    public String getName(){
         return this.name;
     }
 
@@ -109,6 +108,10 @@ public class Warehouse {
      */
     public Inventory get(int n){
         return invList.get(n);
+    }
+
+    public int size(){
+        return invList.size();
     }
 
     /**
