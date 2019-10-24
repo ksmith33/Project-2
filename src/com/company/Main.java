@@ -67,8 +67,8 @@ public class Main {
                             boolean s = Boolean.parseBoolean(newObj[4]);
                             int q = Integer.parseInt(newObj[5]);
                             Inventory newInv = new Inventory(n,id,p,sp,s,q);
-                            Inventory listContains = parts.findInventorybyName(newInv.findPartName());
-                            if (!listContains.findPartName().equals(newInv.findPartName())) {
+                            Inventory listContains = parts.findInventorybyName(newInv.getPartName());
+                            if (!listContains.getPartName().equals(newInv.getPartName())) {
                                 parts.add(newInv);
                             }
                             else{
@@ -94,8 +94,8 @@ public class Main {
                     boolean onSale = input.nextBoolean();
                     int quantity = input.nextInt();
                     Inventory newInv = new Inventory(partName, partNumber, price, salesPrice, onSale, quantity);
-                    Inventory listContains = parts.findInventorybyName(newInv.findPartName());
-                    if (!listContains.findPartName().equals(newInv.findPartName())) {
+                    Inventory listContains = parts.findInventorybyName(newInv.getPartName());
+                    if (!listContains.getPartName().equals(newInv.getPartName())){
                         parts.add(newInv);
                     }
                     else{
@@ -138,10 +138,10 @@ public class Main {
                     }
                     else{
                         if(newInv.findPart().isOnSale() == true){
-                            System.out.println(newInv.findPartName() + newInv.findPart().getSalesPrice());
+                            System.out.println("Name: " + newInv.getPartName() + " " + "Price: " + newInv.findPart().getSalesPrice());
                         }
                         else{
-                            System.out.println(newInv.findPartName() + newInv.findPart().getPrice());
+                            System.out.println("Name: " + newInv.getPartName() + " " + "Price: " + newInv.findPart().getPrice());
                         }
                     }
                 }catch (InputMismatchException e){
@@ -172,11 +172,11 @@ public class Main {
 
         int counter = 0;
         while (counter < partsToSave.size() - 1) {
-            writer.println(partsToSave.get(counter).findPart());
+            writer.println(partsToSave.get(counter).findPart() + "," + partsToSave.get(counter).getQuantity());
             ++counter;
         }
         while (counter < partsToSave.size()) {
-            writer.print(partsToSave.get(counter).findPart());
+            writer.print(partsToSave.get(counter).findPart() + "," + partsToSave.get(counter).getQuantity());
             ++counter;
         }
         writer.close();

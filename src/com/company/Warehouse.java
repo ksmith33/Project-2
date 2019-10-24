@@ -17,32 +17,35 @@ public class Warehouse {
     public Inventory findInventorybyName(String name){
         int counter = 0;
         boolean found = false;
+        Inventory inv = null;
 
-        while (counter < invList.size() && found == false){
-            if (invList.get(counter).findPartName().equals(name) ){
+        while (counter < invList.size()-1 && found == false){
+            if (invList.get(counter).getPartName().equals(name) ){
                 found = true;
-
+                inv = invList.get(counter);
             }
             else{
                 ++counter;
             }
         }
-        return invList.get(counter);
+        return inv;
     }
     public Inventory findInventorybyNumber (int number){
         int counter = 0;
         boolean found = false;
+        Inventory inv = null;
 
         while (counter < invList.size() && found == false){
-            if (invList.get(counter).findPartNumber() == number){
+            if (invList.get(counter).getPartNum() == number){
                 found = true;
+                inv = invList.get(counter);
 
             }
             else{
                 ++counter;
             }
         }
-        return invList.get(counter);
+        return inv;
     }
     public ArrayList<Inventory> getWarehouse(){
         return invList;

@@ -16,6 +16,8 @@ public class BikePart{
     /**
      * Constructor for objects of class BikePart
      */
+    public BikePart(){
+    }
     public BikePart(String partName, int partNum, double price, double salesPrice, boolean onSale){
         this.partName = partName;
         this.partNum = partNum;
