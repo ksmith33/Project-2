@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Warehouse {
+public class Warehouse{
     private String name;
     private ArrayList<Inventory> invList;
 
@@ -11,8 +11,8 @@ public class Warehouse {
      * Constructor for objects of class Warehouse.
      */
     public Warehouse(String name){
+        super();
         this.name = name;
-        invList = new ArrayList<>();
     }
 
     /**
@@ -22,27 +22,33 @@ public class Warehouse {
     public void add(Inventory inv){
         invList.add(inv);
     }
+    public void updateInventory(Inventory inv, int index){
+        invList.get(index).setPrice(inv.getPrice());
+        invList.get(index).setSalesPrice(inv.getSalesPrice());
+        invList.get(index).increase(inv.getQuantity());
+        invList.get(index).setOnSale(inv.isOnSale());
+    }
 
     /**
      * This method searches for an Inventory object by its name.
      * @param name - the name of the object to find
      * @return the Inventory object name.
      */
-    public Inventory findInventorybyName(String name){
+    public int findInventorybyName(String name){
         int counter = 0;
         boolean found = false;
-        Inventory inv = null;
+        int index = -1;
 
         while (counter < invList.size() && found == false){
             if (invList.get(counter).getPartName().equals(name) ){
+                index = counter;
                 found = true;
-                inv = invList.get(counter);
             }
             else{
                 ++counter;
             }
         }
-        return inv;
+        return index;
     }
 
     /**
@@ -50,22 +56,23 @@ public class Warehouse {
      * @param number - the number of the object to find
      * @return the Inventory object
      */
-    public Inventory findInventorybyNumber (int number){
+    public int findInventorybyNumber (int number){
         int counter = 0;
         boolean found = false;
-        Inventory inv = null;
+        int index = -1;
 
         while (counter < invList.size() && found == false){
             if (invList.get(counter).getPartNum() == number){
+                index = counter;
                 found = true;
-                inv = invList.get(counter);
+
 
             }
             else{
                 ++counter;
             }
         }
-        return inv;
+        return index;
     }
 
     /**

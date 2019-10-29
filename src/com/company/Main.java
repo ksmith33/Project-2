@@ -41,6 +41,7 @@ public class Main {
                 System.out.println("SortName: Sort parts by part name");
                 System.out.println("SortNumber: Sort parts by part number");
                 System.out.println("Move: Move inventory");
+                System.out.println("Add: Add a SalesVan to Fleet");
                 System.out.println("Quit:");
                 System.out.println("Enter your choice: ");
                 user = input.next();
@@ -71,15 +72,12 @@ public class Main {
                             boolean s = Boolean.parseBoolean(newObj[4]);
                             int q = Integer.parseInt(newObj[5]);
                             Inventory newInv = new Inventory(n,id,p,sp,s,q);
-                            Inventory listContains = parts.findInventorybyName(newInv.getPartName());
-                            if (listContains == null) {
+                            int index = parts.findInventorybyName(newInv.getPartName());
+                            if (index == -1){
                                 parts.add(newInv);
                             }
                             else{
-                                listContains.setOnSale(newInv.isOnSale());
-                                listContains.setQuantity(listContains.getQuantity() + newInv.getQuantity());
-                                listContains.setPrice(newInv.getPrice());
-                                listContains.setSalesPrice(newInv.getSalesPrice());
+                                parts.updateInventory(newInv, index);
                             }
                         }
                         fileRead.close();
@@ -101,15 +99,12 @@ public class Main {
                     boolean onSale = input.nextBoolean();
                     int quantity = input.nextInt();
                     Inventory newInv = new Inventory(partName, partNumber, price, salesPrice, onSale, quantity);
-                    Inventory listContains = parts.findInventorybyName(newInv.getPartName());
-                    if (listContains == null){
+                    int index = parts.findInventorybyName(newInv.getPartName());
+                    if (index == -1){
                         parts.add(newInv);
                     }
                     else{
-                        listContains.setOnSale(newInv.isOnSale());
-                        listContains.setQuantity(listContains.getQuantity() + newInv.getQuantity());
-                        listContains.setPrice(newInv.getPrice());
-                        listContains.setSalesPrice(newInv.getSalesPrice());
+                        parts.updateInventory(newInv, index);
                     }
                 }catch (InputMismatchException e){
                     System.out.println();
@@ -121,15 +116,31 @@ public class Main {
                 try {
                     System.out.println("Enter the part number: ");
                     int number = input.nextInt();
-                    Inventory newInv = parts.findInventorybyNumber(number);
-                    if (newInv == null) {
+                    int index = parts.findInventorybyNumber(number);
+
+                    if (index == -1) {
                         System.out.println();
                         System.out.println("This item is not currently in stock.");
                         System.out.println();
                     }
                     else{
-                        newInv.setQuantity(newInv.getQuantity() - 1);
+                        parts.get(index).decrease(1);
                     }
+
+                    if (index == -1) {
+                        System.out.println();
+                        System.out.println("This item is not currently in stock.");
+                        System.out.println();
+                    }
+                    else{
+                        if(parts.get(index).isOnSale()){
+                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getSalesPrice());
+                        }
+                        else{
+                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getPrice());
+                        }
+                    }
+                    System.out.print("Quantity: " + parts.get(index).getSalesPrice());
                 } catch (InputMismatchException e){
                     System.out.println();
                     System.out.println("Sorry. There was a problem with your entry.");
@@ -140,18 +151,18 @@ public class Main {
                 try {
                     System.out.println("Enter the part name: ");
                     String partName = input.next();
-                    Inventory newInv = parts.findInventorybyName(partName);
-                    if (newInv == null) {
+                    int index = parts.findInventorybyName(partName);
+                    if (index == -1) {
                         System.out.println();
                         System.out.println("This item is not currently in stock.");
                         System.out.println();
                     }
                     else{
-                        if(newInv.isOnSale() == true){
-                            System.out.println("Name: " + newInv.getPartName() + " " + "Price: " + newInv.getSalesPrice());
+                        if(parts.get(index).isOnSale()){
+                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getSalesPrice());
                         }
                         else{
-                            System.out.println("Name: " + newInv.getPartName() + " " + "Price: " + newInv.getPrice());
+                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getPrice());
                         }
                     }
                 }catch (InputMismatchException e){

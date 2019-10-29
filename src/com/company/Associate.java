@@ -18,25 +18,26 @@ public class Associate {
     }
 
     public void move(Warehouse wH, Warehouse sV, String part, int quantity){
-        wH.findInventorybyName(part).decrease(quantity);
-        Inventory toMove = sV.findInventorybyName(part);
-        if (toMove == null){
-            sV.add(wH.findInventorybyName(part));
+        int index = wH.findInventorybyName(part);
+        wH.get(index).decrease(quantity);
+        int indexToMove = sV.findInventorybyName(part);
+        if (indexToMove == -1){
+            sV.add(wH.get(index));
         }
         else{
-            sV.findInventorybyName(part).increase(quantity);
+            sV.get(index).increase(quantity);
         }
     }
 
     public void move(SalesVan salesV, SalesVan salV, String part, int quantity){
-        salesV.findInventorybyName(part).decrease(quantity);
-        Inventory toMove = salV.findInventorybyName(part);
-
-        if (toMove == null){
-            salV.add(salesV.findInventorybyName(part));
+        int index = salesV.findInventorybyName(part);
+        salesV.get(index).decrease(quantity);
+        int indexToMove = salV.findInventorybyName(part);
+        if (indexToMove == -1){
+            salV.add(salesV.get(index));
         }
         else{
-            salV.findInventorybyName(part).increase(quantity);
+            salV.get(index).increase(quantity);
         }
     }
 
