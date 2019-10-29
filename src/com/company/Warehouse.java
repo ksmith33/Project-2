@@ -83,6 +83,14 @@ public class Warehouse{
         return this;
     }
 
+    public ArrayList<Inventory> getInvList() {
+        return invList;
+    }
+
+    public void setInvList(ArrayList<Inventory> invList) {
+        this.invList = invList;
+    }
+
     /**
      * This method sorts the Warehouse ArrayList by Inventory object name.
      * @return a list sorted alphabetically.
