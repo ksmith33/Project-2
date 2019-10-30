@@ -303,7 +303,6 @@ public class Main {
                     System.out.println();
                     System.out.println("Sorry. That's not a valid selection.");
                     System.out.println();
-                    input.nextLine();
                 }
             }
             input.nextLine();
