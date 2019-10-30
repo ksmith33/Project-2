@@ -9,13 +9,19 @@ public class Associate {
     private String name;
 
     /**
-     * This is the constructor for objects of class Associate. An instance of this class is created with every instance of the SalesVan class.
-     * The object takes its name from the SalesVan name.
-     * @param name
+     * This is the constructor for objects of class Associate.
      */
     public Associate(String name){
         this.name = name;
     }
+
+    /**
+     * This method allows an Associate object to move inventory from warehouse to sales van.
+     * @param wH
+     * @param sV
+     * @param part
+     * @param quantity
+     */
 
     public void move(Warehouse wH, Warehouse sV, String part, int quantity){
         int index = wH.findInventorybyName(part);
