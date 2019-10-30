@@ -23,7 +23,7 @@ public class Fleet {
         boolean found = false;
         SalesVan van = null;
 
-        while (counter < fleet.size() && found == false){
+        while (counter <= fleet.size() && found == false){
             if (fleet.get(counter).getName().equals(name) ){
                 found = true;
                 van = fleet.get(counter);

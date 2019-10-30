@@ -134,13 +134,13 @@ public class Main {
                     }
                     else{
                         if(parts.get(index).isOnSale()){
-                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getSalesPrice());
+                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getSalesPrice() + " " + "Quantity: " + parts.get(index).getQuantity());
                         }
                         else{
-                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getPrice());
+                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getPrice()+ " " + "Quantity: " + parts.get(index).getQuantity());
                         }
                     }
-                    System.out.print("Quantity: " + parts.get(index).getSalesPrice());
+                    System.out.println();
                 } catch (InputMismatchException e){
                     System.out.println();
                     System.out.println("Sorry. There was a problem with your entry.");
@@ -164,6 +164,7 @@ public class Main {
                         else{
                             System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getPrice());
                         }
+                        System.out.println();
                     }
                 }catch (InputMismatchException e){
                     System.out.println();
@@ -177,10 +178,11 @@ public class Main {
                 System.out.println("Sales van: Sort items by sales van.");
                 System.out.println("Total: Sort items by combined warehouses and sales vans.");
                 System.out.println("Enter your choice: ");
+                user = input.next();
                 if(user.equals("Warehouse") || user.equals("warehouse") || user.equals("WAREHOUSE")){
                     parts.sortByName();
                     int counter = 0;
-                    while (counter < parts.size()) {
+                    while (counter <= parts.size()-1) {
                         System.out.println(parts.get(counter));
                         ++counter;
                     }
@@ -191,7 +193,7 @@ public class Main {
                     SalesVan v = mainFleet.findSalesVane(s);
                     v.sortByName();
                     int counter = 0;
-                    while (counter < v.size()) {
+                    while (counter <= v.size()-1) {
                         System.out.println(parts.get(counter));
                         ++counter;
                     }
@@ -202,10 +204,12 @@ public class Main {
                 System.out.println("Sales van: Sort items by sales van.");
                 System.out.println("Total: Sort items by combined warehouses and sales vans.");
                 System.out.println("Enter your choice: ");
+                user = input.next();
+
                 if(user.equals("Warehouse") || user.equals("warehouse") || user.equals("WAREHOUSE")){
                     parts.sortbyNumber();
                     int counter = 0;
-                    while (counter < parts.size()) {
+                    while (counter <= parts.size()) {
                         System.out.println(parts.get(counter));
                         ++counter;
                     }
@@ -224,15 +228,15 @@ public class Main {
                 else if (user.equals("total") || user.equals("Total") || user.equals("TOTAL")){
                     Warehouse sortWH = new Warehouse("total");
                     int counter = 0;
-                    while(counter < parts.size()){
+                    while(counter <= parts.size()){
                         sortWH.add(parts.get(counter));
                         ++counter;
                     }
                     counter = 0;
-                    while(counter < mainFleet.size()){
+                    while(counter <= mainFleet.size()){
                         SalesVan van = mainFleet.get(counter);
                         int counter2 = 0;
-                        while(counter < van.size()){
+                        while(counter <= van.size()){
                             sortWH.add(van.get(counter));
                             ++counter2;
                         }
@@ -240,7 +244,7 @@ public class Main {
                     }
                     sortWH.sortbyNumber();
                     counter = 0;
-                    while (counter < sortWH.size()) {
+                    while (counter <= sortWH.size()) {
                         System.out.println(parts.get(counter));
                         ++counter;
                     }
@@ -306,11 +310,11 @@ public class Main {
         PrintWriter writer = new PrintWriter(fileWriter);
 
         int counter = 0;
-        while (counter < parts.size() - 1) {
+        while (counter <= parts.size() -2) {
             writer.println(parts.get(counter));
             ++counter;
         }
-        while (counter < parts.size()) {
+        while (counter <= parts.size()-1) {
             writer.print(parts.get(counter));
             ++counter;
         }

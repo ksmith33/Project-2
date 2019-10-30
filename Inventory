@@ -1,5 +1,6 @@
-10spRearDerailuer,1234567896,85.00,50.50,false,10
-10spFrontDerailuer,1234567897,60.00,10.00,true,10
-11spRearDerailuer,1234567898,60.00,50.50,false,10
-11spFrontDerailuer,1234567899,60.00,50.50,true,10
-mensBibsMedium,1234567900,110.00,99.00,false,4
+10spRearDerailuer,1234567896,85.00,2.00,true,10
+10spFrontDerailuer,1234567897,5.00,10.00,true,10
+11spRearDerailuer,1234567898,60.00,50.50,false,5
+11spFrontDerailuer,1234567899,60.00,7.00,false,15
+mensBibsMedium,1234567900,110.00,99.00,false,5
+mensBibsLarge,323424,34.00,23.00,true,17

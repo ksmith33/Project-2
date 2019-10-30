@@ -39,7 +39,7 @@ public class Warehouse{
         boolean found = false;
         int index = -1;
 
-        while (counter < invList.size() && found == false){
+        while (counter <= invList.size()-1 && found == false){
             if (invList.get(counter).getPartName().equals(name) ){
                 index = counter;
                 found = true;
@@ -61,7 +61,7 @@ public class Warehouse{
         boolean found = false;
         int index = -1;
 
-        while (counter < invList.size() && found == false){
+        while (counter <= invList.size()-1 && found == false){
             if (invList.get(counter).getPartNum() == number){
                 index = counter;
                 found = true;
