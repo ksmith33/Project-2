@@ -1,5 +1,6 @@
 package com.company;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Fleet {
@@ -11,6 +12,10 @@ public class Fleet {
 
     public void add (SalesVan salesVan){
         fleet.add(salesVan);
+    }
+
+    public ArrayList<SalesVan> getVanList(){
+        return fleet;
     }
 
     public SalesVan findSalesVane (String name){
@@ -28,5 +33,11 @@ public class Fleet {
             }
         }
         return van;
+    }
+    public int size(){
+        return fleet.size();
+    }
+    public SalesVan get(int n){
+        return fleet.get(n);
     }
 }
