@@ -118,6 +118,7 @@ public class Main {
                     System.out.println("Enter the part number: ");
                     int number = input.nextInt();
                     int index = parts.findInventorybyNumber(number);
+
                     if (index == -1) {
                         System.out.println();
                         System.out.println("This item is not currently in stock.");
@@ -176,6 +177,7 @@ public class Main {
                 System.out.println("Please select from the following: ");
                 System.out.println("Warehouse: Sort items by warehouse.");
                 System.out.println("Sales van: Sort items by salesvan.");
+                System.out.println("SalesVan: Sort items by sales van.");
                 System.out.println("Total: Sort items by combined warehouses and sales vans.");
                 System.out.println("Please note: when choosing a sales van, enter it as one word i. e. salesvan");
                 System.out.println("Enter your choice: ");
@@ -212,6 +214,7 @@ public class Main {
                 System.out.println("Please note: when choosing a sales van, enter it as one word i. e. salesvan");
                 System.out.println("Enter your choice: ");
                 user = input.next();
+
                 if(user.equals("Warehouse") || user.equals("warehouse") || user.equals("WAREHOUSE")){
                     parts.sortbyNumber();
                     int counter = 0;
@@ -268,6 +271,7 @@ public class Main {
                             ++counter;
                         }
                     }
+
                 }
 
             } else if((user.equals("Move"))|| (user.equals("MOVE")) || (user.equals("move"))){
@@ -292,7 +296,7 @@ public class Main {
                         mainAss.move(parts.getWarehouse(), mainFleet.findSalesVane(salesVanName), name, quantity);
                     }
                 }
-                if (user.equals("SalesVanToSalesVan")){
+                else if (user.equals("SalesVanToSalesVan")){
                     String newEntry = fileRead.nextLine();
                     String[] newObj = newEntry.split(",");
                     String salesVanName1 = newObj[0];
@@ -303,7 +307,12 @@ public class Main {
                         String name = newObj[0];
                         int quantity = Integer.parseInt(newObj[1]);
                         mainAss.move(mainFleet.findSalesVane(salesVanName1), mainFleet.findSalesVane(salesVanName2), name, quantity);
+                        System.out.print(mainFleet.findSalesVane("SalesVanA"));
                     }
+                }
+                else{
+                    System.out.println("Your Inventory File Could Not Be Processed.");
+                    System.out.println();
                 }
             }
             else if((user.equals("Add")) || user.equals("add") || user.equals("ADD")){
@@ -321,6 +330,7 @@ public class Main {
                     input.nextLine();
                 }
             }
+            input.nextLine();
         }
         System.out.println();
 
