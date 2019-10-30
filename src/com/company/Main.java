@@ -175,7 +175,7 @@ public class Main {
             } else if ((user.equals("SortName")) || (user.equals("sortname")) || (user.equals("SORTNAME"))) {
                 System.out.println("Please select from the following: ");
                 System.out.println("Warehouse: Sort items by warehouse.");
-                System.out.println("Sales van: Sort items by sales van.");
+                System.out.println("SalesVan: Sort items by sales van.");
                 System.out.println("Total: Sort items by combined warehouses and sales vans.");
                 System.out.println("Enter your choice: ");
                 user = input.next();
@@ -187,14 +187,14 @@ public class Main {
                         ++counter;
                     }
                 }
-                else if (user.equals("sales van") || user.equals("Sales Van") || user.equals("SALES VAN")){
+                else if (user.equals("salesvan") || user.equals("SalesVan") || user.equals("SALESVAN")){
                     System.out.println("Please enter the name of the sales van: ");
                     String s = input.next();
                     SalesVan v = mainFleet.findSalesVane(s);
                     v.sortByName();
                     int counter = 0;
                     while (counter <= v.size()-1) {
-                        System.out.println(parts.get(counter));
+                        System.out.println(v.get(counter));
                         ++counter;
                     }
                 }
@@ -209,7 +209,7 @@ public class Main {
                 if(user.equals("Warehouse") || user.equals("warehouse") || user.equals("WAREHOUSE")){
                     parts.sortbyNumber();
                     int counter = 0;
-                    while (counter <= parts.size()) {
+                    while (counter <= parts.size()-1) {
                         System.out.println(parts.get(counter));
                         ++counter;
                     }
@@ -220,23 +220,23 @@ public class Main {
                     SalesVan v = mainFleet.findSalesVane(s);
                     v.sortbyNumber();
                     int counter = 0;
-                    while (counter < v.size()) {
-                        System.out.println(parts.get(counter));
+                    while (counter < v.size()-1) {
+                        System.out.println(v.get(counter));
                         ++counter;
                     }
                 }
                 else if (user.equals("total") || user.equals("Total") || user.equals("TOTAL")){
                     Warehouse sortWH = new Warehouse("total");
                     int counter = 0;
-                    while(counter <= parts.size()){
+                    while(counter <= parts.size()-1){
                         sortWH.add(parts.get(counter));
                         ++counter;
                     }
                     counter = 0;
-                    while(counter <= mainFleet.size()){
+                    while(counter <= mainFleet.size()-1){
                         SalesVan van = mainFleet.get(counter);
                         int counter2 = 0;
-                        while(counter <= van.size()){
+                        while(counter <= van.size()-1){
                             sortWH.add(van.get(counter));
                             ++counter2;
                         }
@@ -244,11 +244,10 @@ public class Main {
                     }
                     sortWH.sortbyNumber();
                     counter = 0;
-                    while (counter <= sortWH.size()) {
+                    while (counter <= sortWH.size()-1) {
                         System.out.println(parts.get(counter));
                         ++counter;
                     }
-
                 }
 
             } else if((user.equals("Move"))|| (user.equals("MOVE")) || (user.equals("move"))){
@@ -273,7 +272,7 @@ public class Main {
                         mainAss.move(parts.getWarehouse(), mainFleet.findSalesVane(salesVanName), name, quantity);
                     }
                 }
-                if (user.equals("SalesVanToSalesVan")){
+                else if (user.equals("SalesVanToSalesVan")){
                     String newEntry = fileRead.nextLine();
                     String[] newObj = newEntry.split(",");
                     String salesVanName1 = newObj[0];
@@ -284,7 +283,12 @@ public class Main {
                         String name = newObj[0];
                         int quantity = Integer.parseInt(newObj[1]);
                         mainAss.move(mainFleet.findSalesVane(salesVanName1), mainFleet.findSalesVane(salesVanName2), name, quantity);
+                        System.out.print(mainFleet.findSalesVane("SalesVanA"));
                     }
+                }
+                else{
+                    System.out.println("Your Inventory File Could Not Be Processed.");
+                    System.out.println();
                 }
             }
             else if((user.equals("Add")) || user.equals("add") || user.equals("ADD")){
@@ -302,6 +306,7 @@ public class Main {
                     input.nextLine();
                 }
             }
+            input.nextLine();
         }
         System.out.println();
 

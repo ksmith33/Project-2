@@ -22,10 +22,11 @@ public class Associate {
         wH.get(index).decrease(quantity);
         int indexToMove = sV.findInventorybyName(part);
         if (indexToMove == -1){
-            sV.add(wH.get(index));
+            Inventory Inv = new Inventory(wH.get(index).getPartName(), wH.get(index).getPartNum(),wH.get(index).getPrice(),wH.get(index).getSalesPrice(),wH.get(index).isOnSale(), quantity);
+            sV.add(Inv);
         }
         else{
-            sV.get(index).increase(quantity);
+            sV.get(indexToMove).increase(quantity);
         }
     }
 
