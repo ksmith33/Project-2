@@ -11,7 +11,7 @@ public class Warehouse{
      * Constructor for objects of class Warehouse.
      */
     public Warehouse(String name){
-        super();
+        invList = new ArrayList<>();
         this.name = name;
     }
 
