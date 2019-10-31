@@ -1,5 +1,12 @@
 package com.company;
 
+/**
+ * This is a helper class to compare Inventory objects by name. It implements the Comparator interface.
+ * This class satisfies the Project 2 requirements for CPSC 240-01.
+ * @author Keshyra Smith, Kelly Donaghey, Olivia Duffy
+ * @version 2019/11/01
+ */
+
 import java.util.Comparator;
 
 public class CompareInventorybyName implements Comparator<Inventory> {

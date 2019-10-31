@@ -1,5 +1,12 @@
 package com.company;
 
+/**
+ * This class is a helper class that sorts Inventory objects by number. It implements the Comparator interface.
+ * This class satisfies the Project 2 requirements for CPSC 240-01.
+ * @author Keshyra Smith, Kelly Donaghey, Olivia Duffy
+ * @version 2019/11/01
+ */
+
 import java.util.Comparator;
 
 public class CompareInventorybyNumber implements Comparator <Inventory> {

@@ -1,7 +1,13 @@
 package com.company;
 
+/**
+ * This class satisfies the Project 2 requirements for CPSC 240-01.
+ * @author Keshyra Smith, Kelly Donaghey, Olivia Duffy
+ * @version 2019/11/01
+ */
+
+
 import java.io.IOException;
-import java.nio.file.FileSystemNotFoundException;
 import java.util.*;
 import java.io.*;
 
@@ -331,6 +337,7 @@ public class Main {
                                 int quantity = Integer.parseInt(newObj[1]);
                                 mainAss.move(parts.getWarehouse(), mainFleet.findSalesVane(salesVanName), name, quantity);
                             }
+                            System.out.println("Your inventory has been moved.");
                         } else if (user.equals("SalesVanToSalesVan")) {
                             String newEntry = fileRead.nextLine();
                             String[] newObj = newEntry.split(",");
@@ -343,6 +350,7 @@ public class Main {
                                 int quantity = Integer.parseInt(newObj[1]);
                                 mainAss.move(mainFleet.findSalesVane(salesVanName1), mainFleet.findSalesVane(salesVanName2), name, quantity);
                             }
+                            System.out.println("Your inventory has been moved.");
                         } else {
                             System.out.println("Your Inventory File Could Not Be Processed.");
                             System.out.println();

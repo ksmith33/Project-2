@@ -1,9 +1,9 @@
 package com.company;
 
 /**
- * This class satisfies the Project 1 requirements for CPSC 240.
- * @author Kelly Donaghey, Olivia Duffy, Keshyra Smith
- * @version 2019/09/21
+ * This class creates a BikePart object It satisfies the Project 2 requirements for CPSC 240-01.
+ * @author Keshyra Smith, Kelly Donaghey, Olivia Duffy
+ * @version 2019/11/01
  */
 
 public class BikePart{
@@ -107,10 +107,9 @@ public class BikePart{
     }
 
     /**
-     * Method checks part quantity
-     * @return int;
+     * This method overrides the "toString" method.
+     * @return a String.
      */
-
     @Override
     public String toString(){
         return String.format("%s%s%d%s%.2f%s%.2f%s%b",partName ,",",partNum ,",",price,",",salesPrice,",",onSale);
