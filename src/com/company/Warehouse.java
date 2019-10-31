@@ -10,7 +10,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Warehouse{
+public class Warehouse {
     private String name;
     private ArrayList<Inventory> invList;
 
