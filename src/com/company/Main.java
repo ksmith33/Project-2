@@ -340,7 +340,6 @@ public class Main {
                                 String name = newObj[0];
                                 int quantity = Integer.parseInt(newObj[1]);
                                 mainAss.move(mainFleet.findSalesVane(salesVanName1), mainFleet.findSalesVane(salesVanName2), name, quantity);
-                                System.out.print(mainFleet.findSalesVane("SalesVanA"));
                             }
                             System.out.println("Your inventory has been moved.");
                         } else {
