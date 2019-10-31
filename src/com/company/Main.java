@@ -32,8 +32,6 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         while ((!user.equals("Quit")) && ((!user.equals("quit"))) && (!user.equals("QUIT"))) {
-
-            {
                 System.out.println("Please select your option from the following menu:");
                 System.out.println("Read: Read an inventory delivery file");
                 System.out.println("Enter: Enter a part");
@@ -46,7 +44,7 @@ public class Main {
                 System.out.println("Quit:");
                 System.out.println("Enter your choice: ");
                 user = input.next();
-            }
+
 
             if ((user.equals("Read")) || (user.equals("read")) || (user.equals("READ"))) {
 
@@ -178,6 +176,7 @@ public class Main {
                         System.out.println(parts.get(counter));
                         ++counter;
                     }
+                    System.out.println();
                 } else if (user.equals("salesvan") || user.equals("SalesVan") || user.equals("SALESVAN")) {
 
                     if (mainFleet.size() == 0) {
@@ -194,6 +193,7 @@ public class Main {
                             System.out.println(v.get(counter));
                             ++counter;
                         }
+                        System.out.println();
                     }
                 } else if (user.equals("total") || user.equals("Total") || user.equals("TOTAL")) {
                     Warehouse sortWH = new Warehouse("total");
@@ -227,7 +227,8 @@ public class Main {
                             ++counter;
                         }
                     }
-                } else if ((user.equals("SortNumber")) || (user.equals("sortnumber")) || (user.equals("SORTNUMBER"))) {
+                    System.out.println();
+                }} else if ((user.equals("SortNumber")) || (user.equals("sortnumber")) || (user.equals("SORTNUMBER"))) {
                     System.out.println("Please select from the following: ");
                     System.out.println();
                     System.out.println("Warehouse: Sort items by warehouse.");
@@ -245,6 +246,7 @@ public class Main {
                             System.out.println(parts.get(counter));
                             ++counter;
                         }
+                        System.out.println();
                     } else if (user.equals("salesvan") || user.equals("SalesVan") || user.equals("SALESVAN")) {
 
                         if (mainFleet.size() == 0) {
@@ -262,6 +264,7 @@ public class Main {
                                 ++counter;
                             }
                         }
+                        System.out.println();
                     } else if (user.equals("total") || user.equals("Total") || user.equals("TOTAL")) {
                         Warehouse sortWH = new Warehouse("total");
                         int counter = 0;
@@ -294,10 +297,10 @@ public class Main {
                                 ++counter;
                             }
                         }
-
+                        System.out.println();
                     }
-
-                } else if ((user.equals("Move")) || (user.equals("MOVE")) || (user.equals("move"))) {
+                }
+                 else if ((user.equals("Move")) || (user.equals("MOVE")) || (user.equals("move"))) {
                     System.out.println("Enter the name of the Sales Van Delivery File: ");
                     String fileName = input.next();
                     try {
@@ -376,5 +379,5 @@ public class Main {
             System.out.println("Thank you. Goodbye.");
         }
     }
-}
+
 
