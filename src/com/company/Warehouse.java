@@ -1,5 +1,12 @@
 package com.company;
 
+/**
+ * This class creates a Warehouse object to store Inventory objects
+ * It satisfies the Project 2 requirements for CPSC 240-01.
+ * @author Keshyra Smith, Kelly Donaghey, Olivia Duffy
+ * @version 2019/11/01
+ */
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -93,7 +100,6 @@ public class Warehouse{
 
     /**
      * This method sorts the Warehouse ArrayList by Inventory object name.
-     * @return a list sorted alphabetically.
      */
     public void sortByName(){
         CompareInventorybyName inv2 = new CompareInventorybyName();
@@ -125,6 +131,10 @@ public class Warehouse{
         return invList.get(n);
     }
 
+    /**
+     * This method returns the size of the Warehouse ArrayList.
+     * @return the size of the Warehouse ArrayList as an int.
+     */
     public int size(){
         return invList.size();
     }

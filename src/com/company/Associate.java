@@ -1,9 +1,11 @@
 package com.company;
 
-import java.io.File;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.lang.Integer;
+/**
+ * This class moves inventory from one Warehouse or SalesVan object to another.
+ * It satisfies the Project 2 requirements for CPSC 240-01.
+ * @author Keshyra Smith, Kelly Donaghey, Olivia Duffy
+ * @version 2019/11/01
+ */
 
 public class Associate {
     private String name;
@@ -17,12 +19,11 @@ public class Associate {
 
     /**
      * This method allows an Associate object to move inventory from warehouse to sales van.
-     * @param wH
-     * @param sV
-     * @param part
-     * @param quantity
+     * @param wH The Warehouse object that has the inventory.
+     * @param sV The SalesVan object to receive the inventory.
+     * @param part The part that will be moved.
+     * @param quantity The quantity of parts moved.
      */
-
     public void move(Warehouse wH, Warehouse sV, String part, int quantity){
         int index = wH.findInventorybyName(part);
         wH.get(index).decrease(quantity);
@@ -36,6 +37,13 @@ public class Associate {
         }
     }
 
+    /**
+     * This method allows an Associate object to move inventory from sales van to sales van.
+     * @param salesV The SalesVan object that has the inventory.
+     * @param salV The SalesVan object to receive the inventory.
+     * @param part The part that will be moved.
+     * @param quantity The quantity of parts moved.
+     */
     public void move(SalesVan salesV, SalesVan salV, String part, int quantity){
         int index = salesV.findInventorybyName(part);
         salesV.get(index).decrease(quantity);
