@@ -1,4 +1,5 @@
 package com.company;
+import java.util.Comparator;
 
 /**
  * This class is a helper class that sorts Inventory objects by number. It implements the Comparator interface.
@@ -6,9 +7,6 @@ package com.company;
  * @author Keshyra Smith, Kelly Donaghey, Olivia Duffy
  * @version 2019/11/01
  */
-
-import java.util.Comparator;
-
 public class CompareInventorybyNumber implements Comparator <Inventory> {
 
     @Override

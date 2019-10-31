@@ -1,8 +1,5 @@
 package com.company;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 /**
  * This class creates Inventory objects by extending BikePart and adding a quantity field.
  * It satisfies the Project 2 requirements for CPSC 240-01.

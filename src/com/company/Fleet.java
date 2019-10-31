@@ -1,13 +1,11 @@
 package com.company;
+import java.util.ArrayList;
 
 /**
  * This class aggregates SalesVan objects. It satisfies the Project 2 requirements for CPSC 240-01.
  * @author Keshyra Smith, Kelly Donaghey, Olivia Duffy
  * @version 2019/11/01
  */
-
-import java.util.ArrayList;
-
 public class Fleet {
     ArrayList<SalesVan> fleet;
 

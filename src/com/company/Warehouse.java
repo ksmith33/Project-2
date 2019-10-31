@@ -1,4 +1,6 @@
 package com.company;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * This class creates a Warehouse object to store Inventory objects
@@ -7,14 +9,11 @@ package com.company;
  * @version 2019/11/01
  */
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class Warehouse {
     private String name;
     private ArrayList<Inventory> invList;
 
-    /*
+    /**
      * Constructor for objects of class Warehouse.
      */
     public Warehouse(String name){

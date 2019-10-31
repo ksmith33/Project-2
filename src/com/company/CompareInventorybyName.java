@@ -1,4 +1,5 @@
 package com.company;
+import java.util.Comparator;
 
 /**
  * This is a helper class to compare Inventory objects by name. It implements the Comparator interface.
@@ -6,9 +7,6 @@ package com.company;
  * @author Keshyra Smith, Kelly Donaghey, Olivia Duffy
  * @version 2019/11/01
  */
-
-import java.util.Comparator;
-
 public class CompareInventorybyName implements Comparator<Inventory> {
     @Override
     public int compare(Inventory o1, Inventory o2) {
