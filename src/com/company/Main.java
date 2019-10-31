@@ -8,6 +8,7 @@ package com.company;
 
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.io.*;
 
@@ -116,6 +117,8 @@ public class Main {
                 }
             } else if ((user.equals("Sell") || (user.equals("sell") || (user.equals("SELL"))))) {
                 try {
+                    LocalDateTime time = LocalDateTime.now();
+
                     System.out.println("Enter the part number: ");
                     int number = input.nextInt();
                     int index = parts.findInventorybyNumber(number);
@@ -134,9 +137,9 @@ public class Main {
                         System.out.println();
                     } else {
                         if (parts.get(index).isOnSale()) {
-                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getSalesPrice() + " " + "Quantity: " + parts.get(index).getQuantity());
+                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getSalesPrice() + " " + "Quantity: " + parts.get(index).getQuantity() + " "+ "Time: " + time);
                         } else {
-                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getPrice() + " " + "Quantity: " + parts.get(index).getQuantity());
+                            System.out.println("Name: " + parts.get(index).getPartName() + " " + "Price: " + parts.get(index).getPrice() + " " + "Quantity: " + parts.get(index).getQuantity()+ " "+ "Time: " + time);
                         }
                     }
                     System.out.println();
@@ -337,7 +340,9 @@ public class Main {
                                 int quantity = Integer.parseInt(newObj[1]);
                                 mainAss.move(parts.getWarehouse(), mainFleet.findSalesVane(salesVanName), name, quantity);
                             }
+                            System.out.println();
                             System.out.println("Your inventory has been moved.");
+                            System.out.println();
                         } else if (user.equals("SalesVanToSalesVan")) {
                             String newEntry = fileRead.nextLine();
                             String[] newObj = newEntry.split(",");
@@ -350,7 +355,9 @@ public class Main {
                                 int quantity = Integer.parseInt(newObj[1]);
                                 mainAss.move(mainFleet.findSalesVane(salesVanName1), mainFleet.findSalesVane(salesVanName2), name, quantity);
                             }
+                            System.out.println();
                             System.out.println("Your inventory has been moved.");
+                            System.out.println();
                         } else {
                             System.out.println("Your Inventory File Could Not Be Processed.");
                             System.out.println();
