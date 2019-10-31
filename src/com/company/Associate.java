@@ -41,10 +41,11 @@ public class Associate {
         salesV.get(index).decrease(quantity);
         int indexToMove = salV.findInventorybyName(part);
         if (indexToMove == -1){
-            salV.add(salesV.get(index));
+            Inventory Inv = new Inventory(salesV.get(index).getPartName(), salesV.get(index).getPartNum(),salesV.get(index).getPrice(),salesV.get(index).getSalesPrice(),salesV.get(index).isOnSale(), quantity);
+            salV.add(Inv);
         }
         else{
-            salV.get(index).increase(quantity);
+            salV.get(indexToMove).increase(quantity);
         }
     }
 

@@ -77,9 +77,13 @@ public class Main {
                     System.out.println("The inventory has been added from the file you selected");
                     fileRead.close();
                 } catch (FileNotFoundException e) {
-                    System.out.println("File not Found. Try Again");
+                    System.out.println();
+                    System.out.println("File not Found. Try Again.");
+                    System.out.println();
                 } catch (InputMismatchException e) {
+                    System.out.println();
                     System.out.println("There was an error reading the file. Try Again.");
+                    System.out.println();
                 }
             } else if ((user.equals("Enter")) || (user.equals("ENTER") || (user.equals("enter")))) {
                 try {
@@ -98,11 +102,11 @@ public class Main {
                     } else {
                         parts.updateInventory(newInv, index);
                     }
+                    System.out.println();
                 } catch (InputMismatchException e) {
                     System.out.println();
                     System.out.println("Sorry. There was a problem with your entry.");
                     System.out.println();
-                    input.nextLine();
                 }
             } else if ((user.equals("Sell") || (user.equals("sell") || (user.equals("SELL"))))) {
                 try {
@@ -178,7 +182,7 @@ public class Main {
                     }
                     System.out.println();
                 } else if (user.equals("salesvan") || user.equals("SalesVan") || user.equals("SALESVAN")) {
-
+                    try{
                     if (mainFleet.size() == 0) {
                         System.out.println();
                         System.out.println("Sorry. There are no sales vans available.");
@@ -189,10 +193,15 @@ public class Main {
                         SalesVan v = mainFleet.findSalesVane(s);
                         v.sortByName();
                         int counter = 0;
-                        while (counter < v.size() - 1) {
+                        while (counter <= v.size() - 1) {
                             System.out.println(v.get(counter));
                             ++counter;
                         }
+                        System.out.println();
+                    }}
+                    catch (NullPointerException e){
+                        System.out.println();
+                        System.out.println("SalesVan not found. Try Again.");
                         System.out.println();
                     }
                 } else if (user.equals("total") || user.equals("Total") || user.equals("TOTAL")) {
@@ -259,7 +268,7 @@ public class Main {
                             SalesVan v = mainFleet.findSalesVane(s);
                             v.sortbyNumber();
                             int counter = 0;
-                            while (counter < v.size() - 1) {
+                            while (counter <= v.size() - 1) {
                                 System.out.println(parts.get(counter));
                                 ++counter;
                             }
@@ -307,7 +316,7 @@ public class Main {
                         File readFile = new File(fileName);
                         Scanner fileRead = new Scanner(readFile);
 
-                        System.out.println("Enter WarehouseToSalesVan or SalesVanToSalesVan");
+                        System.out.println("Enter WarehouseToSalesVan or SalesVanToSalesVan:");
 
                         user = input.next();
                         if (user.equals("WarehouseToSalesVan")) {
@@ -333,23 +342,28 @@ public class Main {
                                 String name = newObj[0];
                                 int quantity = Integer.parseInt(newObj[1]);
                                 mainAss.move(mainFleet.findSalesVane(salesVanName1), mainFleet.findSalesVane(salesVanName2), name, quantity);
-                                System.out.print(mainFleet.findSalesVane("SalesVanA"));
                             }
                         } else {
                             System.out.println("Your Inventory File Could Not Be Processed.");
+                            System.out.println();
                             System.out.println();
                         }
                     } catch (FileNotFoundException e) {
                         System.out.println();
                         System.out.println("File Not Found. Try Again");
                         System.out.println();
-                    }
+                    }catch (NullPointerException e){
+                        System.out.println();
+                        System.out.println("This SalesVan is not in the System. Add it and then Try Again.");
+                        System.out.println();
+                }
                 } else if ((user.equals("Add")) || user.equals("add") || user.equals("ADD")) {
                     System.out.println("Please enter the name of the sales van: ");
                     String vanName = input.next();
                     SalesVan van = new SalesVan(vanName);
                     mainFleet.add(van);
                     System.out.println("Van added to the fleet.");
+                    System.out.println();
                 } else {
                     if (!(user.equals("quit") || user.equals("Quit") || user.equals("QUIT"))) {
                         System.out.println();

@@ -22,6 +22,7 @@ public class Warehouse{
     public void add(Inventory inv){
         invList.add(inv);
     }
+
     public void updateInventory(Inventory inv, int index){
         invList.get(index).setPrice(inv.getPrice());
         invList.get(index).setSalesPrice(inv.getSalesPrice());
