@@ -232,7 +232,7 @@ public class Main {
                             SalesVan van = mainFleet.get(counter);
                             int counter2 = 0;
                             while (counter2 <= van.size() - 1) {
-                                sortWH.add(van.get(counter));
+                                sortWH.add(van.get(counter2));
                                 ++counter2;
                             }
                             ++counter;
@@ -302,7 +302,7 @@ public class Main {
                                 SalesVan van = mainFleet.get(counter);
                                 int counter2 = 0;
                                 while (counter2 <= van.size() - 1) {
-                                    sortWH.add(van.get(counter));
+                                    sortWH.add(van.get(counter2));
                                     ++counter2;
                                 }
                                 ++counter;
