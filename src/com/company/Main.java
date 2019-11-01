@@ -277,7 +277,7 @@ public class Main {
                             v.sortbyNumber();
                             int counter = 0;
                             while (counter <= v.size() - 1) {
-                                System.out.println(parts.get(counter));
+                                System.out.println(v.get(counter));
                                 ++counter;
                             }
                         }
@@ -310,7 +310,7 @@ public class Main {
                             sortWH.sortbyNumber();
                             counter = 0;
                             while (counter <= sortWH.size() - 1) {
-                                System.out.println(parts.get(counter));
+                                System.out.println(sortWH.get(counter));
                                 ++counter;
                             }
                         }
